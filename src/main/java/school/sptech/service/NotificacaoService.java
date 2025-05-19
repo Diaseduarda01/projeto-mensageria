@@ -22,12 +22,12 @@ public class NotificacaoService {
         for (Cliente cliente : clientes) {
             if (cliente.deveNotificarAgora()) {
                 // AGREGADO dinamicamente com os dados do banco
-                Notificador notificador = new SlackController(cliente.webhookUrl);
+                Notificador notificador = new SlackController(cliente.getWebhookUrl());
 
-                String mensagem = "📢 Olá " + cliente.nomeCliente + ", seus dados foram carregados.";
+                String mensagem = "📢 Olá, seus dados foram carregados.";
                 notificador.notificar(mensagem);
 
-                notificacaoRepository.atualizarUltimaNotificacao(cliente.id);
+                notificacaoRepository.atualizarUltimaNotificacao(cliente.getId());
             }
         }
     }

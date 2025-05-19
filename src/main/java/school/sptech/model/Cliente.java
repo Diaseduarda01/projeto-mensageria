@@ -3,30 +3,32 @@ package school.sptech.model;
 import java.time.LocalDateTime;
 
 public class Cliente {
-    public int id;
-    public String nomeCliente;
-    public String webhookUrl;
-    public String canal;
-    public java.time.LocalDateTime ultimaNotificacao;
-    public int intervaloMinutos;
+    private int id;
+    private int idUsuario;
+    private int status;
+    private int frequenciaMinutos;
+    private String canalDestinatario;
+    private String webhookUrl;
+    private LocalDateTime ultimaNotificacao;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String nomeCliente, String webhookUrl, String canal, LocalDateTime ultimaNotificacao, int intervaloMinutos) {
+    public Cliente(int id, int idUsuario, int status, int frequenciaMinutos,
+                   String canalDestinatario, String webhookUrl, LocalDateTime ultimaNotificacao) {
         this.id = id;
-        this.nomeCliente = nomeCliente;
+        this.idUsuario = idUsuario;
+        this.status = status;
+        this.frequenciaMinutos = frequenciaMinutos;
+        this.canalDestinatario = canalDestinatario;
         this.webhookUrl = webhookUrl;
-        this.canal = canal;
         this.ultimaNotificacao = ultimaNotificacao;
-        this.intervaloMinutos = intervaloMinutos;
     }
 
     public boolean deveNotificarAgora() {
         if (ultimaNotificacao == null) return true;
-        java.time.LocalDateTime agora = java.time.LocalDateTime.now();
-        java.time.Duration duracao = java.time.Duration.between(ultimaNotificacao, agora);
-        return duracao.toMinutes() >= intervaloMinutos;
+        LocalDateTime agora = LocalDateTime.now();
+        return java.time.Duration.between(ultimaNotificacao, agora).toMinutes() >= frequenciaMinutos;
     }
 
     public int getId() {
@@ -37,12 +39,36 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getFrequenciaMinutos() {
+        return frequenciaMinutos;
+    }
+
+    public void setFrequenciaMinutos(int frequenciaMinutos) {
+        this.frequenciaMinutos = frequenciaMinutos;
+    }
+
+    public String getCanalDestinatario() {
+        return canalDestinatario;
+    }
+
+    public void setCanalDestinatario(String canalDestinatario) {
+        this.canalDestinatario = canalDestinatario;
     }
 
     public String getWebhookUrl() {
@@ -53,14 +79,6 @@ public class Cliente {
         this.webhookUrl = webhookUrl;
     }
 
-    public String getCanal() {
-        return canal;
-    }
-
-    public void setCanal(String canal) {
-        this.canal = canal;
-    }
-
     public LocalDateTime getUltimaNotificacao() {
         return ultimaNotificacao;
     }
@@ -69,23 +87,16 @@ public class Cliente {
         this.ultimaNotificacao = ultimaNotificacao;
     }
 
-    public int getIntervaloMinutos() {
-        return intervaloMinutos;
-    }
-
-    public void setIntervaloMinutos(int intervaloMinutos) {
-        this.intervaloMinutos = intervaloMinutos;
-    }
-
     @Override
     public String toString() {
         return "Cliente{" +
                 "id=" + id +
-                ", nomeCliente='" + nomeCliente + '\'' +
+                ", idUsuario=" + idUsuario +
+                ", status=" + status +
+                ", frequenciaMinutos=" + frequenciaMinutos +
+                ", canalDestinatario='" + canalDestinatario + '\'' +
                 ", webhookUrl='" + webhookUrl + '\'' +
-                ", canal='" + canal + '\'' +
                 ", ultimaNotificacao=" + ultimaNotificacao +
-                ", intervaloMinutos=" + intervaloMinutos +
                 '}';
     }
 }

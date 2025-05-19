@@ -15,20 +15,19 @@ public class NotificacaoRepository {
 
     public List<Cliente> buscarClientes() throws SQLException {
         List<Cliente> lista = new ArrayList<>();
-        String sql = "SELECT id, nome_cliente, webhook_url, canal, ultima_notificacao, intervalo_minutos FROM notificacoes";
+        String sql = "SELECT id, id_usuario, status, frequencia_minutos, canal_destinatario, webhook_url FROM notificacao_config WHERE status = 1";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.id = rs.getInt("id");
-                cliente.nomeCliente = rs.getString("nome_cliente");
-                cliente.webhookUrl = rs.getString("webhook_url");
-                cliente.canal = rs.getString("canal");
-                Timestamp ultima = rs.getTimestamp("ultima_notificacao");
-                cliente.ultimaNotificacao = (ultima != null) ? ultima.toLocalDateTime() : null;
-                cliente.intervaloMinutos = rs.getInt("intervalo_minutos");
+                cliente.setId(rs.getInt("id"));
+                cliente.setIdUsuario(rs.getInt("id_usuario"));
+                cliente.setStatus(rs.getInt("status"));
+                cliente.setFrequenciaMinutos(rs.getInt("frequencia_minutos"));
+                cliente.setCanalDestinatario(rs.getString("canal_destinatario"));
+                cliente.setWebhookUrl(rs.getString("webhook_url"));
                 lista.add(cliente);
             }
         }
@@ -37,10 +36,11 @@ public class NotificacaoRepository {
     }
 
     public void atualizarUltimaNotificacao(int idCliente) throws SQLException {
-        String sql = "UPDATE notificacoes SET ultima_notificacao = CURRENT_TIMESTAMP WHERE id = ?";
+        String sql = "UPDATE notificacao_config SET ultima_notificacao = CURRENT_TIMESTAMP WHERE id = ?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setInt(1, idCliente);
             stmt.executeUpdate();
         }
     }
+
 }
