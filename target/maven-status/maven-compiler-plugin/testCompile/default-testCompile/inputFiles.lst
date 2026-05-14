@@ -1,0 +1,5 @@
+/home/consultor/Documentos/pessoal/projetos/projeto-plataforma-dias-service/ms-notificacao/src/test/java/com/example/notification/application/service/NotificationStrategyResolverTest.java
+/home/consultor/Documentos/pessoal/projetos/projeto-plataforma-dias-service/ms-notificacao/src/test/java/com/example/notification/application/usecase/ProcessNotificationUseCaseTest.java
+/home/consultor/Documentos/pessoal/projetos/projeto-plataforma-dias-service/ms-notificacao/src/test/java/com/example/notification/infrastructure/strategy/EmailNotificationStrategyTest.java
+/home/consultor/Documentos/pessoal/projetos/projeto-plataforma-dias-service/ms-notificacao/src/test/java/com/example/notification/infrastructure/strategy/WhatsAppNotificationStrategyTest.java
+/home/consultor/Documentos/pessoal/projetos/projeto-plataforma-dias-service/ms-notificacao/src/test/java/com/example/notification/integration/NotificationIntegrationTest.java
