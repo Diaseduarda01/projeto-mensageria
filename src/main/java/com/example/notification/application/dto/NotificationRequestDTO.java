@@ -22,6 +22,9 @@ public class NotificationRequestDTO {
     @Schema(description = "E-mail ou identificador do destinatário", example = "user@email.com")
     private String recipient;
 
+    @Schema(description = "Assunto (usado em EMAIL, ignorado nos demais canais)", example = "Confirme seu e-mail")
+    private String subject;
+
     @NotBlank(message = "A mensagem é obrigatória")
     @Schema(description = "Conteúdo da notificação", example = "Seu agendamento foi confirmado")
     private String message;

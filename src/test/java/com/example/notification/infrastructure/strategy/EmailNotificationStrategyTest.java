@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
@@ -45,6 +44,7 @@ class EmailNotificationStrategyTest {
     void shouldDelegateToEmailSender() {
         var notification = new Notification(
                 "user@email.com",
+                "Agendamento confirmado",
                 "Seu agendamento foi confirmado",
                 LocalDateTime.now(),
                 NotificationChannel.EMAIL
@@ -54,7 +54,7 @@ class EmailNotificationStrategyTest {
 
         verify(emailSender).send(
                 eq("user@email.com"),
-                any(String.class),
+                eq("Agendamento confirmado"),
                 eq("Seu agendamento foi confirmado")
         );
     }

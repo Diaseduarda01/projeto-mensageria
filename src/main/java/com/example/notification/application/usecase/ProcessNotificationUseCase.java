@@ -19,8 +19,13 @@ public class ProcessNotificationUseCase {
     public void execute(NotificationRequestDTO dto) {
         validate(dto);
 
+        String subject = (dto.getSubject() != null && !dto.getSubject().isBlank())
+                ? dto.getSubject()
+                : "Notificação";
+
         Notification notification = new Notification(
                 dto.getRecipient(),
+                subject,
                 dto.getMessage(),
                 dto.getSendAt(),
                 dto.getChannel()

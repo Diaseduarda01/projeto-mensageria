@@ -20,7 +20,7 @@ public class EmailNotificationStrategy implements NotificationStrategy {
         log.debug("Enviando notificação via EMAIL para {}", notification.recipient());
         emailSender.send(
                 notification.recipient(),
-                "Notificação",
+                notification.subject(),
                 notification.message()
         );
     }

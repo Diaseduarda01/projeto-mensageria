@@ -43,6 +43,7 @@ class WhatsAppNotificationStrategyTest {
     void shouldDelegateToEvolutionApiSender() {
         var notification = new Notification(
                 "5511999999999",
+                null,
                 "Seu agendamento foi confirmado",
                 LocalDateTime.now(),
                 NotificationChannel.WHATSAPP
