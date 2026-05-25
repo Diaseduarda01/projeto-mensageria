@@ -359,5 +359,10 @@ O Spring detecta automaticamente o novo `@Component` e o `NotificationStrategyRe
 | `MAIL_PORT` | `587` | Porta SMTP |
 | `MAIL_USERNAME` | — | Usuário do e-mail remetente |
 | `MAIL_PASSWORD` | — | Senha de app do e-mail |
+| `EVOLUTION_API_URL` | `http://evolution-api:8080` | Base URL da Evolution API (gateway WhatsApp) |
+| `EVOLUTION_API_KEY` | — | API key da instância Evolution |
+| `EVOLUTION_API_INSTANCE` | `default` | Nome da instância WhatsApp configurada na Evolution |
 
 > **Dica Gmail:** gere uma *Senha de App* em Conta Google → Segurança → Verificação em duas etapas → Senhas de app.
+
+> Há um `.env.example` na raiz do serviço com todas as variáveis prontas para copiar.
